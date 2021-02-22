@@ -17,37 +17,31 @@ public class Persona {
     public static Scanner lectorPersona = new Scanner(System.in);
 
     private String nombre;
-    private String apellidos;
-    private String nif;
-    private String passwd;
+    private String apellido1;
+    private String apellido2;
+    private int edad;
 
-    // Constructor vacío
+    // Constructor vacio
     public Persona() {
     }
 
-    // Constructor con todos los parametros
-    public Persona(String nombre, String apellidos, String nif, String passwd) {
+    // Constructor entero
+    public Persona(String nombre, String apellido1, String apellido2, Integer edad) {
         this.setNombre(nombre);
-        this.setApellidos(apellidos);
-        this.setNif(nif);
-        this.setPasswd(passwd);
+        this.setApellido1(apellido1);
+        this.setApellido2(apellido2);
+        this.setEdad(edad);
     }
 
     // Constructor copia
     public Persona(Persona copia) {
         this.setNombre(copia.getNombre());
-        this.setApellidos(copia.getApellidos());
-        this.setNif(copia.getNif());
-        this.setPasswd(copia.getPasswd());
+        this.setApellido1(copia.getApellido1());
+        this.setApellido2(copia.getApellido2());
+        this.setEdad(copia.getEdad());
     }
 
-    // toString
-    @Override
-    public String toString() {
-        return "{ " + "Nombre: " + nombre + " | " + "Apellidos: " + apellidos + " | " + "NIF: " + nif + " }";
-    }
-
-    // GETTERS & SETTERS
+    // GETTERS Y SETTERS
     public String getNombre() {
         return nombre;
     }
@@ -56,77 +50,34 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getApellido1() {
+        return apellido1;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setApellido1(String apellido1) {
+        this.apellido1 = apellido1;
     }
 
-    public String getNif() {
-        return nif;
+    public String getApellido2() {
+        return apellido2;
     }
 
-    public void setNif(String nif) {
-        this.nif = nif;
+    public void setApellido2(String apellido2) {
+        this.apellido2 = apellido2;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public Integer getEdad() {
+        return edad;
     }
 
-    public void setPasswd(String passwd) {
-        if (passwd.length() < 8) {
-            System.out.println(">>> La contraseña es demasiado corta, por favor introduce al menos 8 caracteres");
-            passwd = lectorPersona.nextLine();
-        }
-
-        this.passwd = passwd;
+    public void setEdad(Integer edad) {
+        this.edad = edad;
     }
 
-    public static Persona anadirPersonal() {
-        Persona trabajadorNuevo = new Persona();
-        System.out.println(">>> Nombre:");
-        trabajadorNuevo.setNombre(lectorPersona.nextLine());
-        System.out.println(">>> Apellidos:");
-        trabajadorNuevo.setApellidos(lectorPersona.nextLine());
-        System.out.println(">>> NIF:");
-        trabajadorNuevo.setNif(lectorPersona.nextLine());
-        System.out.println(">>> Contraseña:");
-        trabajadorNuevo.setPasswd(lectorPersona.nextLine());
-
-        return trabajadorNuevo;
-    }
-
-    public static int eliminarPersonal(ArrayList<Persona> listaPersonal) {
-        boolean encontrado = false;
-        System.out.println(">>> Introduce el NIF del trabajador a eliminar");
-        String NIF = lectorPersona.nextLine();
-        for (int i = 0; (i < listaPersonal.size() && encontrado == false); i++) {
-            if (listaPersonal.get(i).getNif().equals(NIF)) {
-                encontrado = true;
-                System.out.println(">>> Se ha eliminado al trabajador con NIF '" + NIF + "'");
-                return i;
-            }
-        }
-        if (encontrado == false) {
-            System.out.println(">>> No se ha encontrado ningún trabajador con el NIF '" + NIF + "'");
-        }
-        return -1;
-    }
-
-    public static void mostrarListaPersonal(ArrayList<Persona> listaPersonal) {
-        System.out.println(">>> Enseñando todos los trabajadores de la biblioteca");
-        boolean encontrado = false;
-
-        for (int i = 0; (i < listaPersonal.size()); i++) {
-            System.out.println(listaPersonal.get(i).toString());
-            encontrado = true;
-        }
-        if (encontrado == false) {
-            System.out.println(">>> No se ha encontrado ningun trabajador en la biblioteca");
-        }
+    // toString
+    @Override
+    public String toString() {
+        return "{ Nombre: " + nombre + " | Apellidos: " + apellido1 + " " + apellido2 + " | Edad: " + edad + " }";
     }
 
 }
