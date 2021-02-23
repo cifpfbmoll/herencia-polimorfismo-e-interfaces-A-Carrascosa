@@ -8,15 +8,12 @@ package eu.fp.biblioteca;
 import eu.fp.biblioteca.libros.*;
 import eu.fp.biblioteca.personas.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
  * @author Karina
  */
 public class Biblioteca {
-
-    public static Scanner lectorBiblioteca = new Scanner(System.in);
 
     private String nombreBiblioteca;
     private ArrayList<Libro> listaLibros = new ArrayList();
@@ -75,8 +72,7 @@ public class Biblioteca {
     }
 
     public static void cambiarNombre(Biblioteca obj) {
-        System.out.println(">>> Introduce el nuevo nombre de la biblioteca");
-        String nombre = lectorBiblioteca.nextLine();
+        String nombre = Lector.kString("Introduce el nuevo nombre de la biblioteca");
         obj.setNombreBiblioteca(nombre);
     }
 

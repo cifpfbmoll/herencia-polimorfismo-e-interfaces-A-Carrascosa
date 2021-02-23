@@ -5,16 +5,14 @@
  */
 package eu.fp.biblioteca.libros;
 
+import eu.fp.biblioteca.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
  * @author Karina
  */
 public class Libro {
-
-    public static Scanner lectorLibro = new Scanner(System.in);
 
     private static int contadorLibros;
     private int isbn;
@@ -84,9 +82,7 @@ public class Libro {
     public void setIsbn(int isbn, ArrayList<Libro> listaLibros) {
         for (int i = 0; i < listaLibros.size(); i++) {
             while (listaLibros.get(i).getIsbn() == isbn) {
-                System.out.println(">>> Este ISBN ya esta en esta biblioteca, introduce otro ISBN.");
-                isbn = lectorLibro.nextInt();
-                lectorLibro.nextLine(); // Limpiar buffer dentro del input
+                isbn = Lector.kInt("Este ISBN ya esta en esta biblioteca, introduce otro ISBN");
             }
         }
         this.isbn = isbn;
@@ -107,9 +103,7 @@ public class Libro {
     public void setCopias(int copias) {
         while (copias < 1) {
             System.out.println(">>> No puede haber menos de 1 copia.");
-            System.out.println(">>> Vuelve a introducir la cantidad de copias.");
-            copias = lectorLibro.nextInt();
-            lectorLibro.nextLine(); // Limpiar buffer dentro del input
+            copias = Lector.kInt("Vuelve a introducir la cantidad de copias");
         }
         this.copias = copias;
     }
@@ -125,36 +119,27 @@ public class Libro {
 
     public static Libro anadirLibro(ArrayList<Libro> listaLibros) {
         Libro libroNuevo = new Libro();
-        System.out.println(">>> Titulo del libro:");
-        libroNuevo.setTitulo(lectorLibro.nextLine());
-        System.out.println(">>> Autor del libro:");
-        libroNuevo.setAutor(lectorLibro.nextLine());
-        System.out.println(">>> Editorial del libro:");
-        libroNuevo.setEditorial(lectorLibro.nextLine());
-        System.out.println(">>> ISBN del libro:");
-        libroNuevo.setIsbn(lectorLibro.nextInt(), listaLibros);
-        System.out.println(">>> Copias del libro:");
-        int copias = lectorLibro.nextInt();
+        libroNuevo.setTitulo(Lector.kString("Titulo del libro"));
+        libroNuevo.setAutor(Lector.kString("Autor del libro"));
+        libroNuevo.setEditorial(Lector.kString("Editorial del libro"));
+        libroNuevo.setIsbn(Lector.kInt("ISBN del libro"), listaLibros);
+        int copias = Lector.kInt("Copias del libro");
         libroNuevo.setCopias(copias);
-        System.out.println(">>> Copias disponibles del libro:");
-        int copiasDisponibles = lectorLibro.nextInt();
+        int copiasDisponibles = Lector.kInt("Copias disponibles del libro");
         while (copiasDisponibles > copias) {
             System.out.println(">>> No puede haber menos de 1 copia.");
-            System.out.println(">>> Vuelve a introducir la cantidad de copias.");
-            copiasDisponibles = lectorLibro.nextInt();
-            lectorLibro.nextLine(); // Limpiar buffer dentro del input
+            copiasDisponibles = Lector.kInt("Vuelve a introducir la cantidad de copias");
+
         }
         libroNuevo.setCopiasDisponibles(copiasDisponibles);
-        lectorLibro.nextLine(); // Limpiar buffer dentro del input
 
         return libroNuevo;
     }
 
     public static int eliminarLibro(ArrayList<Libro> listaLibros) {
         boolean encontrado = false;
-        System.out.println(">>> Introduce el ISBN del libro a eliminar");
-        int ISBN = lectorLibro.nextInt();
-        lectorLibro.nextLine(); // Limpiar buffer dentro del input
+        int ISBN = Lector.kInt("Introduce el ISBN del libro a eliminar");
+
         for (int i = 0; (i < listaLibros.size() && encontrado == false); i++) {
             if (listaLibros.get(i).getIsbn() == ISBN) {
                 if (listaLibros.get(i).getCopiasDisponibles() == listaLibros.get(i).getCopias()) {
@@ -175,9 +160,8 @@ public class Libro {
     }
 
     public static void buscarPorIsbn(ArrayList<Libro> listaLibros) {
-        System.out.println(">>> Introduce el ISBN del libro a buscar");
-        int ISBN = lectorLibro.nextInt();
-        lectorLibro.nextLine(); // Limpiar buffer dentro del input
+        int ISBN = Lector.kInt("Introduce el ISBN del libro a buscar");
+
         boolean encontrado = false;
 
         for (int i = 0; (i < listaLibros.size() && encontrado == false); i++) {
@@ -192,8 +176,7 @@ public class Libro {
     }
 
     public static void buscarPorTitulo(ArrayList<Libro> listaLibros) {
-        System.out.println(">>> Introduce el titulo del libro a buscar");
-        String busqueda = lectorLibro.nextLine();
+        String busqueda = Lector.kString("Introduce el titulo del libro a buscar");
         boolean encontrado = false;
 
         for (int i = 0; (i < listaLibros.size()); i++) {
@@ -208,9 +191,8 @@ public class Libro {
     }
 
     public static void anadirReserva(ArrayList<Libro> listaLibros) {
-        System.out.println(">>> Introduce el ISBN del libro a reservar");
-        int isbn = lectorLibro.nextInt();
-        lectorLibro.nextLine(); // Limpiar buffer dentro del input
+        int isbn = Lector.kInt("Introduce el ISBN del libro a reservar");
+
         boolean encontrado = false;
 
         for (int i = 0; (i < listaLibros.size()); i++) {
@@ -230,9 +212,8 @@ public class Libro {
     }
 
     public static void eliminarReserva(ArrayList<Libro> listaLibros) {
-        System.out.println(">>> Introduce el ISBN del libro a devolver");
-        int isbn = lectorLibro.nextInt();
-        lectorLibro.nextLine(); // Limpiar buffer dentro del input
+        int isbn = Lector.kInt("Introduce el ISBN del libro a devolver");
+
         boolean encontrado = false;
 
         for (int i = 0; (i < listaLibros.size()); i++) {

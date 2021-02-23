@@ -7,7 +7,6 @@ package eu.fp.biblioteca;
 
 import eu.fp.biblioteca.libros.*;
 import eu.fp.biblioteca.personas.*;
-import java.util.Scanner;
 
 /**
  *
@@ -15,7 +14,6 @@ import java.util.Scanner;
  */
 public class Main {
 
-    public static Scanner lectorTeclado = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -35,8 +33,8 @@ public class Main {
             System.out.println(" ");
             System.out.println(" 0 > Cerrar programa");
 
-            opcion = lectorTeclado.nextInt();
-            lectorTeclado.nextLine(); // Limpiar buffer dentro del input
+            opcion = Lector.kInt();
+
             int opcion2 = 99;
 
             switch (opcion) {
@@ -71,8 +69,8 @@ public class Main {
         System.out.println(" 6 > Mostrar libros disponibles");
         System.out.println(" ");
         System.out.println(" 0 > Volver al menú principal");
-        opcion2 = lectorTeclado.nextInt();
-        lectorTeclado.nextLine(); // Limpiar buffer dentro del input
+        opcion2 = Lector.kInt();
+
         switch (opcion2) {
             case 1: // Añadir libros
                 libroNuevo = Libro.anadirLibro(biblio.getListaLibros());
@@ -115,8 +113,8 @@ public class Main {
         System.out.println(" 4 > Ver libros disponibles");
         System.out.println(" ");
         System.out.println(" 0 > Volver al menú principal");
-        opcion2 = lectorTeclado.nextInt();
-        lectorTeclado.nextLine(); // Limpiar buffer dentro del input
+        opcion2 = Lector.kInt();
+
         switch (opcion2) {
             case 1: // Añadir reserva
                 Libro.anadirReserva(biblio.getListaLibros());
@@ -155,8 +153,7 @@ public class Main {
         System.out.println(" 8 > Mostrar usuarios registrados");
         System.out.println(" ");
         System.out.println(" 0 > Volver al menú principal");
-        opcion2 = lectorTeclado.nextInt();
-        lectorTeclado.nextLine(); // Limpiar buffer dentro del input
+        opcion2 = Lector.kInt();
 
         Bibliotecario trabajador = new Bibliotecario();
         Usuario cliente = new Usuario();
@@ -215,9 +212,9 @@ public class Main {
     private static void crearPersonas(Biblioteca biblio) {
         for (Integer i = 0; i < 5; i++) {
             String k = i.toString();
-            Bibliotecario p1 = new Bibliotecario("dependiente".concat(k), "43322".concat(k), "patatauwu".concat(k), "Juan".concat(k), "Garcia".concat(k), "Lopez".concat(k), 40-i);
+            Bibliotecario p1 = new Bibliotecario("dependiente".concat(k), "43322".concat(k), "patatauwu".concat(k), "Juan".concat(k), "Garcia".concat(k), "Lopez".concat(k), 40 - i);
             biblio.getListaPersonas().add(p1);
-            Usuario p2 = new Usuario(625 + i * 50, k, 0 + i * 3, k, "Juan".concat(k), "Garcia".concat(k), "Lopez".concat(k), 19+i);
+            Usuario p2 = new Usuario(625 + i * 50, k, 0 + i * 3, k, "Juan".concat(k), "Garcia".concat(k), "Lopez".concat(k), 19 + i);
             biblio.getListaPersonas().add(p2);
 
         }

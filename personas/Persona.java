@@ -6,15 +6,12 @@
 package eu.fp.biblioteca.personas;
 
 import eu.fp.biblioteca.Lector;
-import java.util.Scanner;
 
 /**
  *
  * @author Karina
  */
 public abstract class Persona {
-
-    public static Scanner lectorPersona = new Scanner(System.in);
 
     private String nombre;
     private String apellido1;

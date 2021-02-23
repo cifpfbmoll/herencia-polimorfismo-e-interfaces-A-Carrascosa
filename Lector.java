@@ -34,4 +34,21 @@ public class Lector {
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
+
+    public static String kString() {
+        String valor = lector.nextLine();
+        return valor;
+    }
+
+    public static Integer kInteger() {
+        Integer valor = lector.nextInt();
+        lector.nextLine(); // Limpiar buffer dentro del input
+        return valor;
+    }
+
+    public static int kInt() {
+        int valor = lector.nextInt();
+        lector.nextLine(); // Limpiar buffer dentro del input
+        return valor;
+    }
 }
