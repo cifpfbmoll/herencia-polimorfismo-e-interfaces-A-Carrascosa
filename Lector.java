@@ -10,11 +10,17 @@ import java.util.Scanner;
 /**
  *
  * @author Karina
+ *
  */
 public class Lector {
 
     public static Scanner lector = new Scanner(System.in); // Establecer el objeto scanner
 
+    /**
+     *
+     * @param texto Texto para imprimir y solicitar la informacion a escanear
+     * @return Devuelve el valor que se ha solicitado escanear
+     */
     public static String kString(String texto) {
         System.out.println(">>> " + texto + ": ");
         String valor = lector.nextLine();
@@ -26,6 +32,11 @@ public class Lector {
         return valor;
     }
 
+    /**
+     *
+     * @param texto Texto para imprimir y solicitar la informacion a escanear
+     * @return Devuelve el valor que se ha solicitado escanear
+     */
     public static Integer kInteger(String texto) {
         System.out.println(">>> " + texto + ": ");
         Integer valor = lector.nextInt();
@@ -39,6 +50,11 @@ public class Lector {
         return valor;
     }
 
+    /**
+     *
+     * @param texto Texto para imprimir y solicitar la informacion a escanear
+     * @return Devuelve el valor que se ha solicitado escanear
+     */
     public static int kInt(String texto) {
         System.out.println(">>> " + texto + ": ");
         int valor = lector.nextInt();
@@ -52,6 +68,11 @@ public class Lector {
         return valor;
     }
 
+    /**
+     *
+     * @param texto Texto para imprimir y solicitar la informacion a escanear
+     * @return Devuelve el valor que se ha solicitado escanear
+     */
     public static Float kFloat(String texto) {
         System.out.println(">>> " + texto + ": ");
         Float valor = lector.nextFloat();
