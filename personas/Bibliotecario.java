@@ -61,8 +61,8 @@ public class Bibliotecario extends Persona {
     public void setPasswd(String passwd) {
 
         String confirmacion = Lector.kString("Confirma la contraseña");
-        while (!passwd.equals(confirmacion) || passwd.length() < 7) {
-            if (passwd.length() < 7) {
+        while (!passwd.equals(confirmacion) || passwd.length() < 8) {
+            if (passwd.length() < 8) {
                 System.out.println("<!> Esa contraseña es muy corta, introduce una de al menos 8 caracteres.");
             } else {
                 System.out.println("<!> Las contraseñas no coinciden, vuelve a introducirlas!");

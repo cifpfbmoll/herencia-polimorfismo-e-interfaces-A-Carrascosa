@@ -19,24 +19,24 @@ public class Biblioteca {
 
     private String nombreBiblioteca;
     private ArrayList<Libro> listaLibros = new ArrayList();
-    private ArrayList<Persona> listaPersonal = new ArrayList();
+    private ArrayList<Persona> listaPersonas = new ArrayList();
 
     // Constructor vacio
     public Biblioteca() {
     }
 
     // Constructor con todos los parametros
-    public Biblioteca(String nombreBiblioteca, ArrayList<Libro> listaLibros, ArrayList<Persona> listaPersonal) {
-        this.nombreBiblioteca = nombreBiblioteca;
-        this.listaLibros = listaLibros;
-        this.listaPersonal = listaPersonal;
+    public Biblioteca(String nombreBiblioteca, ArrayList<Libro> listaLibros, ArrayList<Persona> listaPersonas) {
+        this.setNombreBiblioteca(nombreBiblioteca);
+        this.setListaLibros(listaLibros);
+        this.setListaPersonas(listaPersonas);
     }
 
     // Constructor copia
     public Biblioteca(Biblioteca copia) {
         this.setNombreBiblioteca(copia.getNombreBiblioteca());
         this.setListaLibros(copia.getListaLibros());
-        this.setListaPersonal(copia.getListaPersonal());
+        this.setListaPersonas(copia.getListaPersonas());
     }
 
     // GETTERS Y SETTERS
@@ -56,17 +56,17 @@ public class Biblioteca {
         this.listaLibros = listaLibros;
     }
 
-    public ArrayList<Persona> getListaPersonal() {
-        return listaPersonal;
+    public ArrayList<Persona> getListaPersonas() {
+        return listaPersonas;
     }
 
-    public void setListaPersonal(ArrayList<Persona> listaPersonal) {
-        this.listaPersonal = listaPersonal;
+    public void setListaPersonas(ArrayList<Persona> listaPersonas) {
+        this.listaPersonas = listaPersonas;
     }
 
     @Override
     public String toString() {
-        return "{ " + "Biblioteca: " + nombreBiblioteca + " | " + "Titulos: " + listaLibros.size() + " | " + "Tamaño personal: " + listaPersonal.size() + " }";
+        return "{ " + "Biblioteca: " + nombreBiblioteca + " | " + "Titulos: " + listaLibros.size() + " | " + "Tamaño personal: " + listaPersonas.size() + " }";
     }
 
     public static void verInfoBiblioteca(Biblioteca obj) {
@@ -125,22 +125,37 @@ public class Biblioteca {
     public void mostrarListaPersonal() {
         System.out.println(">>> Enseñando todos los trabajadores de la biblioteca");
         boolean encontrado = false;
-
-        for (int i = 0; (i < listaPersonal.size()); i++) {
-            System.out.println(listaPersonal.get(i).toString());
-            encontrado = true;
+        for (int i = 0; (i < listaPersonas.size()); i++) {
+            if (listaPersonas.get(i) instanceof Bibliotecario) {
+                System.out.println(listaPersonas.get(i).toString());
+                encontrado = true;
+            }
         }
         if (encontrado == false) {
             System.out.println(">>> No se ha encontrado ningun trabajador en la biblioteca");
         }
     }
 
+    public void mostrarListaUsuarios() {
+        System.out.println(">>> Enseñando todos los usuarios de la biblioteca");
+        boolean encontrado = false;
+        for (int i = 0; (i < listaPersonas.size()); i++) {
+            if (listaPersonas.get(i) instanceof Usuario) {
+                System.out.println(listaPersonas.get(i).toString());
+                encontrado = true;
+            }
+        }
+        if (encontrado == false) {
+            System.out.println(">>> No se ha encontrado ningun usuario en la biblioteca");
+        }
+    }
+
     public int eliminarPersonal() {
         boolean encontrado = false;
         String NIF = Lector.kString("Introduce el NIF del trabajador a eliminar");
-        for (int i = 0; (i < listaPersonal.size() && encontrado == false); i++) {
-            if ((Bibliotecario)listaPersonal.get(i) instanceof Bibliotecario) {
-                if (((Bibliotecario)listaPersonal.get(i)).getNif().equals(NIF)) {
+        for (int i = 0; (i < listaPersonas.size() && encontrado == false); i++) {
+            if (listaPersonas.get(i) instanceof Bibliotecario) {
+                if (((Bibliotecario) listaPersonas.get(i)).getNif().equals(NIF)) {
                     encontrado = true;
                     System.out.println(">>> Se ha eliminado al trabajador con NIF '" + NIF + "'");
                     return i;

@@ -6,14 +6,13 @@
 package eu.fp.biblioteca.personas;
 
 import eu.fp.biblioteca.Lector;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  *
  * @author Karina
  */
-public class Persona {
+public abstract class Persona {
 
     public static Scanner lectorPersona = new Scanner(System.in);
 

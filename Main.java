@@ -144,25 +144,32 @@ public class Main {
         System.out.println(" 1 > Añadir trabajador");
         System.out.println(" 2 > Eliminar trabajador");
         System.out.println(" 3 > Mostrar trabajadores registrados");
+        System.out.println(" ");
         System.out.println(" 4 > Ver información de la biblioteca");
         System.out.println(" 5 > Cambiar nombre de la biblioteca");
+        System.out.println(" ");
+        System.out.println(" 6 > Añadir usuario");
+        System.out.println(" 7 > Eliminar usuario");
+        System.out.println(" 8 > Mostrar usuarios registrados");
         System.out.println(" ");
         System.out.println(" 0 > Volver al menú principal");
         opcion2 = lectorTeclado.nextInt();
         lectorTeclado.nextLine(); // Limpiar buffer dentro del input
-        
+
         Bibliotecario trabajador = new Bibliotecario();
+        Usuario cliente = new Usuario();
+        int id;
         
         switch (opcion2) {
             case 1: // Añadir una persona al personal
                 trabajador.solicitarDatosPersona();
-                biblio.getListaPersonal().add(trabajador);
+                biblio.getListaPersonas().add(trabajador);
                 break;
 
             case 2: // Eliminar un trabajador del personal
-                int nif = biblio.eliminarPersonal();
-                if (nif != -1) {
-                    biblio.getListaPersonal().remove(nif);
+                id = biblio.eliminarPersonal();
+                if (id != -1) {
+                    biblio.getListaPersonas().remove(id);
                 }
                 break;
 
@@ -176,6 +183,22 @@ public class Main {
 
             case 5: // Cambiar nombre de la biblioteca
                 Biblioteca.cambiarNombre(biblio);
+                break;
+
+            case 6: // Añadir un usuario
+                cliente.solicitarDatosPersona();
+                biblio.getListaPersonas().add(cliente);
+                break;
+
+            case 7: // Eliminar un usuario
+                id = biblio.eliminarPersonal();
+                if (id != -1) {
+                    biblio.getListaPersonas().remove(id);
+                }
+                break;
+
+            case 8: // Consultar lista de usuarios
+                biblio.mostrarListaUsuarios();
                 break;
 
         }

@@ -96,7 +96,7 @@ public class Usuario extends Persona {
         super.solicitarDatosPersona(); //To change body of generated methods, choose Tools | Templates.
         setTelefono(Lector.kInt("Inserta el numero de telefono"));
         setDireccion(Lector.kString("Inserta la direccion"));
-        setCodigoPostal(Lector.kInt("Inserta el numero de telefono"));
+        setCodigoPostal(Lector.kInt("Inserta el codigo postal"));
         setEmail(Lector.kString("Inserta el email"));
     }
 
