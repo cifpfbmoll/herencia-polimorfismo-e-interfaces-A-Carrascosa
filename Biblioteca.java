@@ -5,6 +5,7 @@
  */
 package eu.fp.biblioteca;
 
+import eu.fp.biblioteca.libros.*;
 import eu.fp.biblioteca.personas.*;
 import java.util.ArrayList;
 import java.util.Scanner;

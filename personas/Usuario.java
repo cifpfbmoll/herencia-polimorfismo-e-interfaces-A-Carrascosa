@@ -6,7 +6,7 @@
 package eu.fp.biblioteca.personas;
 
 import eu.fp.biblioteca.Lector;
-import eu.fp.biblioteca.Reserva;
+import eu.fp.biblioteca.libros.Reserva;
 import java.util.ArrayList;
 
 /**
