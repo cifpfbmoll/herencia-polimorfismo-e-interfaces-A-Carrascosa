@@ -22,11 +22,11 @@ public class Bibliotecario extends Persona {
     }
 
     // Constructor entero con los atributos del padre
-    public Bibliotecario(String puesto, String nif, String passwd, String nombre, String apellido1, String apellido2, Integer edad) {
+    public Bibliotecario(String puesto, String nif, String passwd, String nombre, String apellido1, String apellido2, int edad) {
         super(nombre, apellido1, apellido2, edad);
-        this.setPuesto(puesto);
-        this.setNif(nif);
-        this.setPasswd(passwd);
+        this.puesto = puesto;
+        this.nif = nif;
+        this.passwd = passwd;
     }
 
     // Constructor copia

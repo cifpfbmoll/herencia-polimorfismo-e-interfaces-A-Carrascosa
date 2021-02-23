@@ -28,10 +28,10 @@ public class Usuario extends Persona {
     // Cosntructor entero incluido atributos del padre
     public Usuario(int telefono, String direccion, int codigoPostal, String email, String nombre, String apellido1, String apellido2, Integer edad) {
         super(nombre, apellido1, apellido2, edad);
-        this.setTelefono(telefono);
-        this.setDireccion(direccion);
-        this.setCodigoPostal(codigoPostal);
-        this.setEmail(email);
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.codigoPostal = codigoPostal;
+        this.email = email;
     }
 
     // Constructor copia
@@ -87,7 +87,7 @@ public class Usuario extends Persona {
     // toString con el del padre
     @Override
     public String toString() {
-        super.toString();
+        System.out.println(super.toString());
         return "{ Telefono: " + telefono + " | Direccion: " + direccion + " | Codigo Postal: " + codigoPostal + " | Email: " + email + "}";
     }
 

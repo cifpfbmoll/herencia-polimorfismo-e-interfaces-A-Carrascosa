@@ -26,14 +26,14 @@ public abstract class Persona {
     }
 
     // Constructor entero
-    public Persona(String nombre, String apellido1, String apellido2, Integer edad) {
-        this.setNombre(nombre);
-        this.setApellido1(apellido1);
-        this.setApellido2(apellido2);
-        this.setEdad(edad);
+    public Persona(String nombre, String apellido1, String apellido2, int edad) {
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.edad = edad;
     }
 
-    // Constructor copia
+// Constructor copia
     public Persona(Persona copia) {
         this.setNombre(copia.getNombre());
         this.setApellido1(copia.getApellido1());

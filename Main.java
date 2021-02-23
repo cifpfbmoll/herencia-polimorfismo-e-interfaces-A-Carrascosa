@@ -22,9 +22,10 @@ public class Main {
         Biblioteca biblio = new Biblioteca();
         Libro libroNuevo;
         Persona trabajadorNuevo;
+        crearPersonas(biblio);
 
         while (opcion != 0) {
-            clearScreen();
+            separar();
             System.out.println("    Menú de biblioteca");
             System.out.println("================================================");
             System.out.println(" 1 > Gestionar Libros");
@@ -58,7 +59,7 @@ public class Main {
     private static void gestLibros(Biblioteca biblio) {
         int opcion2;
         Libro libroNuevo;
-        clearScreen();
+        separar();
         System.out.println("    Gestionar Libros");
         System.out.println("================================================");
         System.out.println(" 1 > Añadir libro");
@@ -104,7 +105,7 @@ public class Main {
 
     private static void gestReservas(Biblioteca biblio) {
         int opcion2;
-        clearScreen();
+        separar();
         System.out.println("    Gestionar Reservas");
         System.out.println("================================================");
         System.out.println(" 1 > Añadir reserva");
@@ -138,7 +139,7 @@ public class Main {
     private static void gestBiblioteca(Biblioteca biblio) {
         int opcion2;
         Persona trabajadorNuevo;
-        clearScreen();
+        separar();
         System.out.println("    Gestionar Biblioteca");
         System.out.println("================================================");
         System.out.println(" 1 > Añadir trabajador");
@@ -159,7 +160,7 @@ public class Main {
         Bibliotecario trabajador = new Bibliotecario();
         Usuario cliente = new Usuario();
         int id;
-        
+
         switch (opcion2) {
             case 1: // Añadir una persona al personal
                 trabajador.solicitarDatosPersona();
@@ -204,9 +205,20 @@ public class Main {
         }
     }
 
-    public static void clearScreen() {
-        for (int i = 0; i < 5; i++) {
+    public static void separar() {
+        for (int i = 0; i < 3; i++) {
             System.out.println(" ");
+        }
+    }
+
+    private static void crearPersonas(Biblioteca biblio) {
+        for (Integer i = 0; i < 5; i++) {
+            String k = i.toString();
+            Bibliotecario p1 = new Bibliotecario("dependiente".concat(k), "43322".concat(k), "patatauwu".concat(k), "Juan".concat(k), "Garcia".concat(k), "Lopez".concat(k), 40-i);
+            biblio.getListaPersonas().add(p1);
+            Usuario p2 = new Usuario(625 + i * 50, k, 0 + i * 3, k, "Juan".concat(k), "Garcia".concat(k), "Lopez".concat(k), 19+i);
+            biblio.getListaPersonas().add(p2);
+
         }
     }
 
