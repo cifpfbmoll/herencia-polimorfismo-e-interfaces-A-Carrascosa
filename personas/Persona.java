@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.fp.biblioteca;
+package eu.fp.biblioteca.personas;
 
+import eu.fp.biblioteca.Lector;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -80,4 +81,10 @@ public class Persona {
         return "{ Nombre: " + nombre + " | Apellidos: " + apellido1 + " " + apellido2 + " | Edad: " + edad + " }";
     }
 
+    public void solicitarDatosPersona() {
+        setNombre(Lector.kString("Escribe el nombre"));
+        setApellido1(Lector.kString("Escribe el apellido 1"));
+        setApellido1(Lector.kString("Escribe el apellido 2"));
+        setEdad(Lector.kInt("Escribe la edad"));
+    }
 }

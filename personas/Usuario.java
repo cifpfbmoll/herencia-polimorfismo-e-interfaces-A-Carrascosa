@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.fp.biblioteca;
+package eu.fp.biblioteca.personas;
 
+import eu.fp.biblioteca.Lector;
+import eu.fp.biblioteca.Reserva;
 import java.util.ArrayList;
 
 /**
@@ -87,6 +89,15 @@ public class Usuario extends Persona {
     public String toString() {
         super.toString();
         return "{ Telefono: " + telefono + " | Direccion: " + direccion + " | Codigo Postal: " + codigoPostal + " | Email: " + email + "}";
+    }
+
+    @Override
+    public void solicitarDatosPersona() {
+        super.solicitarDatosPersona(); //To change body of generated methods, choose Tools | Templates.
+        setTelefono(Lector.kInt("Inserta el numero de telefono"));
+        setDireccion(Lector.kString("Inserta la direccion"));
+        setCodigoPostal(Lector.kInt("Inserta el numero de telefono"));
+        setEmail(Lector.kString("Inserta el email"));
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package eu.fp.biblioteca;
 
+import eu.fp.biblioteca.personas.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,7 +31,7 @@ public class Biblioteca {
         this.listaLibros = listaLibros;
         this.listaPersonal = listaPersonal;
     }
-    
+
     // Constructor copia
     public Biblioteca(Biblioteca copia) {
         this.setNombreBiblioteca(copia.getNombreBiblioteca());
@@ -68,16 +69,16 @@ public class Biblioteca {
         return "{ " + "Biblioteca: " + nombreBiblioteca + " | " + "Titulos: " + listaLibros.size() + " | " + "Tamaño personal: " + listaPersonal.size() + " }";
     }
 
-    public static void verInfoBiblioteca(Biblioteca obj){
+    public static void verInfoBiblioteca(Biblioteca obj) {
         System.out.println(obj.toString());
     }
-    
+
     public static void cambiarNombre(Biblioteca obj) {
         System.out.println(">>> Introduce el nuevo nombre de la biblioteca");
         String nombre = lectorBiblioteca.nextLine();
         obj.setNombreBiblioteca(nombre);
     }
-    
+
     public void mostrarLibros() {
         System.out.println(">>> Enseñando todos los libros de la biblioteca");
         boolean encontrado = false;
@@ -105,7 +106,7 @@ public class Biblioteca {
             System.out.println(">>> No se ha encontrado ningun libro disponible en la biblioteca");
         }
     }
-    
+
     public static void mostrarLibrosConReservas(ArrayList<Libro> listaLibros) {
         System.out.println(">>> Enseñando todos los libros con reservas de la biblioteca");
         boolean encontrado = false;
@@ -119,5 +120,36 @@ public class Biblioteca {
         if (encontrado == false) {
             System.out.println(">>> No se ha encontrado ningun libro con reservas en la biblioteca");
         }
+    }
+
+    public void mostrarListaPersonal() {
+        System.out.println(">>> Enseñando todos los trabajadores de la biblioteca");
+        boolean encontrado = false;
+
+        for (int i = 0; (i < listaPersonal.size()); i++) {
+            System.out.println(listaPersonal.get(i).toString());
+            encontrado = true;
+        }
+        if (encontrado == false) {
+            System.out.println(">>> No se ha encontrado ningun trabajador en la biblioteca");
+        }
+    }
+
+    public int eliminarPersonal() {
+        boolean encontrado = false;
+        String NIF = Lector.kString("Introduce el NIF del trabajador a eliminar");
+        for (int i = 0; (i < listaPersonal.size() && encontrado == false); i++) {
+            if ((Bibliotecario)listaPersonal.get(i) instanceof Bibliotecario) {
+                if (((Bibliotecario)listaPersonal.get(i)).getNif().equals(NIF)) {
+                    encontrado = true;
+                    System.out.println(">>> Se ha eliminado al trabajador con NIF '" + NIF + "'");
+                    return i;
+                }
+            }
+        }
+        if (encontrado == false) {
+            System.out.println(">>> No se ha encontrado ningún trabajador con el NIF '" + NIF + "'");
+        }
+        return -1;
     }
 }

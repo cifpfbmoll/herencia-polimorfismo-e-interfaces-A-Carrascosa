@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.fp.biblioteca;
+package eu.fp.biblioteca.personas;
+
+import eu.fp.biblioteca.Lector;
 
 /**
  *
@@ -12,7 +14,7 @@ package eu.fp.biblioteca;
 public class Bibliotecario extends Persona {
 
     private String puesto;
-    private int nif;
+    private String nif;
     private String passwd;
 
     // Constructor vacio
@@ -20,7 +22,7 @@ public class Bibliotecario extends Persona {
     }
 
     // Constructor entero con los atributos del padre
-    public Bibliotecario(String puesto, int nif, String passwd, String nombre, String apellido1, String apellido2, Integer edad) {
+    public Bibliotecario(String puesto, String nif, String passwd, String nombre, String apellido1, String apellido2, Integer edad) {
         super(nombre, apellido1, apellido2, edad);
         this.setPuesto(puesto);
         this.setNif(nif);
@@ -44,11 +46,11 @@ public class Bibliotecario extends Persona {
         this.puesto = puesto;
     }
 
-    public int getNif() {
+    public String getNif() {
         return nif;
     }
 
-    public void setNif(int nif) {
+    public void setNif(String nif) {
         this.nif = nif;
     }
 
@@ -57,14 +59,33 @@ public class Bibliotecario extends Persona {
     }
 
     public void setPasswd(String passwd) {
+
+        String confirmacion = Lector.kString("Confirma la contraseña");
+        while (!passwd.equals(confirmacion) || passwd.length() < 7) {
+            if (passwd.length() < 7) {
+                System.out.println("<!> Esa contraseña es muy corta, introduce una de al menos 8 caracteres.");
+            } else {
+                System.out.println("<!> Las contraseñas no coinciden, vuelve a introducirlas!");
+            }
+            passwd = Lector.kString("Inserta una contraseña");
+            confirmacion = Lector.kString("Confirma la contraseña");
+        }
+
         this.passwd = passwd;
     }
 
     // toString SIN los datos del padre
-
     @Override
     public String toString() {
         return "{ Puesto de trabajo: " + puesto + " | NIF: " + nif + " }";
     }
-    
+
+    @Override
+    public void solicitarDatosPersona() {
+        super.solicitarDatosPersona(); //To change body of generated methods, choose Tools | Templates.
+        setPuesto(Lector.kString("Inserta el puesto de trabajo"));
+        setNif(Lector.kString("Inserta el NIF"));
+        setPasswd(Lector.kString("Inserta una contraseña"));
+    }
+
 }

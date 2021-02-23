@@ -5,6 +5,7 @@
  */
 package eu.fp.biblioteca;
 
+import eu.fp.biblioteca.personas.*;
 import java.util.Scanner;
 
 /**
@@ -38,133 +39,146 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    clearScreen();
-                    System.out.println("    Gestionar Libros");
-                    System.out.println("================================================");
-                    System.out.println(" 1 > Añadir libro");
-                    System.out.println(" 2 > Eliminar libro");
-                    System.out.println(" 3 > Buscar libro por ISBN");
-                    System.out.println(" 4 > Buscar libro por titulo");
-                    System.out.println(" 5 > Mostrar libros");
-                    System.out.println(" 6 > Mostrar libros disponibles");
-                    System.out.println(" ");
-                    System.out.println(" 0 > Volver al menú principal");
-
-                    opcion2 = lectorTeclado.nextInt();
-                    lectorTeclado.nextLine(); // Limpiar buffer dentro del input
-
-                    switch (opcion2) {
-                        case 1: // Añadir libros
-                            libroNuevo = Libro.anadirLibro(biblio.getListaLibros());
-                            biblio.getListaLibros().add(libroNuevo);
-                            break;
-                            
-                        case 2: // Eliminar libros
-                            int isbn = Libro.eliminarLibro(biblio.getListaLibros());
-                            if (isbn != -1) {
-                                biblio.getListaLibros().remove(isbn);
-                            }
-                            break;
-                            
-                        case 3: // Buscar libro por ISBN y devolver la posicion
-                            Libro.buscarPorIsbn(biblio.getListaLibros());
-                            break;
-                            
-                        case 4: // Buscar libro por titulo
-                            Libro.buscarPorTitulo(biblio.getListaLibros());
-                            break;
-                            
-                        case 5: // Mostrar todos los libros
-                            biblio.mostrarLibros();
-                            break;
-                            
-                        case 6: // Mostrar los libros disponibles
-                            biblio.mostrarLibrosDisponibles();
-                            break;
-                    }
+                    gestLibros(biblio);
                     break;
 
                 case 2:
-                    clearScreen();
-                    System.out.println("    Gestionar Reservas");
-                    System.out.println("================================================");
-                    System.out.println(" 1 > Añadir reserva");
-                    System.out.println(" 2 > Eliminar reserva");
-                    System.out.println(" 3 > Ver libros con reservas");
-                    System.out.println(" 4 > Ver libros disponibles");
-                    System.out.println(" ");
-                    System.out.println(" 0 > Volver al menú principal");
-
-                    opcion2 = lectorTeclado.nextInt();
-                    lectorTeclado.nextLine(); // Limpiar buffer dentro del input
-
-                    switch (opcion2) {
-                        case 1: // Añadir reserva
-                            Libro.anadirReserva(biblio.getListaLibros());
-                            break;
-
-                        case 2: // Eliminar reserva
-                            Libro.eliminarReserva(biblio.getListaLibros());
-                            break;
-
-                        case 3: // Mostrar los libros con reservas
-                            Biblioteca.mostrarLibrosConReservas(biblio.getListaLibros());
-                            break;
-
-                        case 4: // Mostrar los libros disponibles
-                            biblio.mostrarLibrosDisponibles();
-                            break;
-
-                    }
-
+                    gestReservas(biblio);
                     break;
 
                 case 3:
-                    clearScreen();
-                    System.out.println("    Gestionar Biblioteca");
-                    System.out.println("================================================");
-                    System.out.println(" 1 > Añadir trabajador");
-                    System.out.println(" 2 > Eliminar trabajador");
-                    System.out.println(" 3 > Mostrar trabajadores registrados");
-                    System.out.println(" 4 > Ver información de la biblioteca");
-                    System.out.println(" 5 > Cambiar nombre de la biblioteca");
-                    System.out.println(" ");
-                    System.out.println(" 0 > Volver al menú principal");
-
-                    opcion2 = lectorTeclado.nextInt();
-                    lectorTeclado.nextLine(); // Limpiar buffer dentro del input
-
-                    switch (opcion2) {
-                        case 1: // Añadir una persona al personal
-                            trabajadorNuevo = Persona.anadirPersonal();
-                            biblio.getListaPersonal().add(trabajadorNuevo);
-                            break;
-                            
-                        case 2: // Eliminar un trabajador del personal
-                            int nif = Persona.eliminarPersonal(biblio.getListaPersonal());
-                            if (nif != -1) {
-                                biblio.getListaPersonal().remove(nif);
-                            }
-                            break;
-                            
-                        case 3: // Consultar lista del personal
-                            Persona.mostrarListaPersonal(biblio.getListaPersonal());
-                            break;
-                            
-                        case 4: // Ver informacion de la biblioteca
-                            Biblioteca.verInfoBiblioteca(biblio);
-                            break;   
-                            
-                        case 5: // Cambiar nombre de la biblioteca
-                            Biblioteca.cambiarNombre(biblio);
-                            break;
-                            
-                    }
+                    gestBiblioteca(biblio);
                     break;
 
             }
         }
 
+    }
+
+    private static void gestLibros(Biblioteca biblio) {
+        int opcion2;
+        Libro libroNuevo;
+        clearScreen();
+        System.out.println("    Gestionar Libros");
+        System.out.println("================================================");
+        System.out.println(" 1 > Añadir libro");
+        System.out.println(" 2 > Eliminar libro");
+        System.out.println(" 3 > Buscar libro por ISBN");
+        System.out.println(" 4 > Buscar libro por titulo");
+        System.out.println(" 5 > Mostrar libros");
+        System.out.println(" 6 > Mostrar libros disponibles");
+        System.out.println(" ");
+        System.out.println(" 0 > Volver al menú principal");
+        opcion2 = lectorTeclado.nextInt();
+        lectorTeclado.nextLine(); // Limpiar buffer dentro del input
+        switch (opcion2) {
+            case 1: // Añadir libros
+                libroNuevo = Libro.anadirLibro(biblio.getListaLibros());
+                biblio.getListaLibros().add(libroNuevo);
+                break;
+
+            case 2: // Eliminar libros
+                int isbn = Libro.eliminarLibro(biblio.getListaLibros());
+                if (isbn != -1) {
+                    biblio.getListaLibros().remove(isbn);
+                }
+                break;
+
+            case 3: // Buscar libro por ISBN y devolver la posicion
+                Libro.buscarPorIsbn(biblio.getListaLibros());
+                break;
+
+            case 4: // Buscar libro por titulo
+                Libro.buscarPorTitulo(biblio.getListaLibros());
+                break;
+
+            case 5: // Mostrar todos los libros
+                biblio.mostrarLibros();
+                break;
+
+            case 6: // Mostrar los libros disponibles
+                biblio.mostrarLibrosDisponibles();
+                break;
+        }
+    }
+
+    private static void gestReservas(Biblioteca biblio) {
+        int opcion2;
+        clearScreen();
+        System.out.println("    Gestionar Reservas");
+        System.out.println("================================================");
+        System.out.println(" 1 > Añadir reserva");
+        System.out.println(" 2 > Eliminar reserva");
+        System.out.println(" 3 > Ver libros con reservas");
+        System.out.println(" 4 > Ver libros disponibles");
+        System.out.println(" ");
+        System.out.println(" 0 > Volver al menú principal");
+        opcion2 = lectorTeclado.nextInt();
+        lectorTeclado.nextLine(); // Limpiar buffer dentro del input
+        switch (opcion2) {
+            case 1: // Añadir reserva
+                Libro.anadirReserva(biblio.getListaLibros());
+                break;
+
+            case 2: // Eliminar reserva
+                Libro.eliminarReserva(biblio.getListaLibros());
+                break;
+
+            case 3: // Mostrar los libros con reservas
+                Biblioteca.mostrarLibrosConReservas(biblio.getListaLibros());
+                break;
+
+            case 4: // Mostrar los libros disponibles
+                biblio.mostrarLibrosDisponibles();
+                break;
+
+        }
+    }
+
+    private static void gestBiblioteca(Biblioteca biblio) {
+        int opcion2;
+        Persona trabajadorNuevo;
+        clearScreen();
+        System.out.println("    Gestionar Biblioteca");
+        System.out.println("================================================");
+        System.out.println(" 1 > Añadir trabajador");
+        System.out.println(" 2 > Eliminar trabajador");
+        System.out.println(" 3 > Mostrar trabajadores registrados");
+        System.out.println(" 4 > Ver información de la biblioteca");
+        System.out.println(" 5 > Cambiar nombre de la biblioteca");
+        System.out.println(" ");
+        System.out.println(" 0 > Volver al menú principal");
+        opcion2 = lectorTeclado.nextInt();
+        lectorTeclado.nextLine(); // Limpiar buffer dentro del input
+        
+        Bibliotecario trabajador = new Bibliotecario();
+        
+        switch (opcion2) {
+            case 1: // Añadir una persona al personal
+                trabajador.solicitarDatosPersona();
+                biblio.getListaPersonal().add(trabajador);
+                break;
+
+            case 2: // Eliminar un trabajador del personal
+                int nif = biblio.eliminarPersonal();
+                if (nif != -1) {
+                    biblio.getListaPersonal().remove(nif);
+                }
+                break;
+
+            case 3: // Consultar lista del personal
+                biblio.mostrarListaPersonal();
+                break;
+
+            case 4: // Ver informacion de la biblioteca
+                Biblioteca.verInfoBiblioteca(biblio);
+                break;
+
+            case 5: // Cambiar nombre de la biblioteca
+                Biblioteca.cambiarNombre(biblio);
+                break;
+
+        }
     }
 
     public static void clearScreen() {
