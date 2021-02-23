@@ -19,8 +19,6 @@ public class Main {
 
         int opcion = 99;
         Biblioteca biblio = new Biblioteca();
-        Libro libroNuevo;
-        Persona trabajadorNuevo;
         crearPersonas(biblio);
 
         while (opcion != 0) {
@@ -34,8 +32,6 @@ public class Main {
             System.out.println(" 0 > Cerrar programa");
 
             opcion = Lector.kInt();
-
-            int opcion2 = 99;
 
             switch (opcion) {
                 case 1:
@@ -139,7 +135,6 @@ public class Main {
 
     private static void gestBiblioteca(Biblioteca biblio) {
         int opcion2;
-        Persona trabajadorNuevo;
         separar();
         System.out.println("    Gestionar Biblioteca");
         System.out.println("================================================");
