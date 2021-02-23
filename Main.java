@@ -69,8 +69,9 @@ public class Main {
         System.out.println(" 6 > Mostrar libros disponibles");
         System.out.println(" ");
         System.out.println(" 0 > Volver al menú principal");
+        
         opcion2 = Lector.kInt();
-
+        
         switch (opcion2) {
             case 1: // Añadir libros
                 libroNuevo = Libro.anadirLibro(biblio.getListaLibros());
@@ -113,6 +114,7 @@ public class Main {
         System.out.println(" 4 > Ver libros disponibles");
         System.out.println(" ");
         System.out.println(" 0 > Volver al menú principal");
+        
         opcion2 = Lector.kInt();
 
         switch (opcion2) {
@@ -153,6 +155,7 @@ public class Main {
         System.out.println(" 8 > Mostrar usuarios registrados");
         System.out.println(" ");
         System.out.println(" 0 > Volver al menú principal");
+        
         opcion2 = Lector.kInt();
 
         Bibliotecario trabajador = new Bibliotecario();

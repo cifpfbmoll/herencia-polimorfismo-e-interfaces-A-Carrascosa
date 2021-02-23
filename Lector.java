@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Lector {
 
-    public static Scanner lector = new Scanner(System.in);
+    public static Scanner lector = new Scanner(System.in); // Establecer el objeto scanner
 
     public static String kString(String texto) {
         System.out.println(">>> " + texto + ": ");
@@ -21,8 +21,19 @@ public class Lector {
         return valor;
     }
 
+    public static String kString() {
+        String valor = lector.nextLine();
+        return valor;
+    }
+
     public static Integer kInteger(String texto) {
         System.out.println(">>> " + texto + ": ");
+        Integer valor = lector.nextInt();
+        lector.nextLine(); // Limpiar buffer dentro del input
+        return valor;
+    }
+
+    public static Integer kInteger() {
         Integer valor = lector.nextInt();
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
@@ -35,19 +46,21 @@ public class Lector {
         return valor;
     }
 
-    public static String kString() {
-        String valor = lector.nextLine();
-        return valor;
-    }
-
-    public static Integer kInteger() {
-        Integer valor = lector.nextInt();
+    public static int kInt() {
+        int valor = lector.nextInt();
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
 
-    public static int kInt() {
-        int valor = lector.nextInt();
+    public static Float kFloat(String texto) {
+        System.out.println(">>> " + texto + ": ");
+        Float valor = lector.nextFloat();
+        lector.nextLine(); // Limpiar buffer dentro del input
+        return valor;
+    }
+
+    public static Float kFloat() {
+        Float valor = lector.nextFloat();
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
