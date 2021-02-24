@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Usuario extends Persona {
 
-    private int telefono;
+    private Integer telefono;
     private String direccion;
     private int codigoPostal;
     private String email;
@@ -44,7 +44,7 @@ public class Usuario extends Persona {
     }
 
     // GETTERS Y SETTERS
-    public int getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
 
@@ -94,7 +94,7 @@ public class Usuario extends Persona {
     @Override
     public void solicitarDatosPersona() {
         super.solicitarDatosPersona(); //To change body of generated methods, choose Tools | Templates.
-        setTelefono(Lector.kInt("Inserta el numero de telefono"));
+        setTelefono(Lector.kInteger("Inserta el numero de telefono"));
         setDireccion(Lector.kString("Inserta la direccion"));
         setCodigoPostal(Lector.kInt("Inserta el codigo postal"));
         setEmail(Lector.kString("Inserta el email"));

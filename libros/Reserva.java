@@ -5,8 +5,10 @@
  */
 package eu.fp.biblioteca.libros;
 
-import java.util.*;
+import eu.fp.biblioteca.*;
+import eu.fp.biblioteca.personas.*;
 import java.text.*;
+import java.util.Date;
 
 /**
  *
@@ -15,11 +17,12 @@ import java.text.*;
 public class Reserva {
 
     private Libro libro;
-    private String fecha;
-    private String hora;
 
     SimpleDateFormat fechaActual = new SimpleDateFormat("dd.MM.yyyy");
-    SimpleDateFormat horaActual = new SimpleDateFormat("hh:mm");
+    SimpleDateFormat horaActual = new SimpleDateFormat("HH:mm");
+
+    private String fecha = fechaActual.format(new Date());
+    private String hora = horaActual.format(new Date());
 
     // Constructor vacio
     public Reserva() {
@@ -70,4 +73,53 @@ public class Reserva {
         return "Reserva { Libro: " + libro.getTitulo() + "(" + libro.getIsbn() + ") | Fecha: " + fecha + " | Hora: " + hora + " }";
     }
 
+    public void reservarLibro(Biblioteca biblio) {
+
+        System.out.println("    Realizar una reserva...");
+        System.out.println("================================================");
+        Integer tlf = Lector.kInteger("Telefono del usuario");
+        String email = Lector.kString("Email del usuario");
+
+        boolean encontrado = false;
+        int i = 0;
+
+        while (!encontrado && i < biblio.getListaPersonas().size()) {
+            if (biblio.getListaPersonas().get(i) instanceof Usuario) {
+                if (((Usuario) biblio.getListaPersonas().get(i)).getTelefono().equals(tlf) && ((Usuario) biblio.getListaPersonas().get(i)).getEmail().equals(email)) {
+                    encontrado = true;
+                }
+            }
+            i += 1;
+        }
+
+        if (!encontrado) {
+            System.out.println("<!> La información del usuario es incorrecta o no esta registrada en el sistema.");
+        } else {
+            Usuario user = (Usuario) biblio.getListaPersonas().get(i - 1);
+            System.out.println("    Se va a reservar un libro para " + user.getNombre() + " " + user.getApellido1() + " (" + user.getTelefono() + ")");
+            Integer isbn = Lector.kInt("Introduce el ISBN del libro a reservar");
+
+            i = 0;
+            encontrado = false;
+
+            while (i < biblio.getListaLibros().size() && !encontrado) {
+                if (biblio.getListaLibros().get(i).getIsbn() == isbn) {
+                    encontrado = true;
+                    Libro libro = biblio.getListaLibros().get(i);
+                    if (libro.getCopiasDisponibles() > 0) {
+                        Reserva reserva = new Reserva(libro, fecha, hora);
+                        user.getListaReservas().add(reserva);
+                        libro.setCopiasDisponibles(libro.getCopiasDisponibles() - 1);
+                        System.out.println("Se ha reservado el libro '" + libro.getTitulo() + "' para " + user.getNombre() + " " + user.getApellido1() + " (" + user.getTelefono() + ")");
+                        System.out.println(reserva.toString());
+                    } else {
+                        System.out.println("<!> No hay copias disponibles del libro '" + libro.getTitulo() + "'");
+                    }
+                }
+                i += 1;
+            }
+
+        }
+
+    }
 }
