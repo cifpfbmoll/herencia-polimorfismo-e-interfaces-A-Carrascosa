@@ -190,27 +190,6 @@ public class Libro {
         }
     }
 
-    public static void anadirReserva(ArrayList<Libro> listaLibros) {
-        int isbn = Lector.kInt("Introduce el ISBN del libro a reservar");
-
-        boolean encontrado = false;
-
-        for (int i = 0; (i < listaLibros.size()); i++) {
-            if (listaLibros.get(i).getIsbn() == isbn) {
-                encontrado = true;
-                if (listaLibros.get(i).getCopiasDisponibles() > 0) {
-                    listaLibros.get(i).setCopiasDisponibles(listaLibros.get(i).getCopiasDisponibles() - 1);
-                    System.out.println(">>> El libro '" + listaLibros.get(i).getTitulo() + "' ha sido reservado.");
-                } else {
-                    System.out.println(">>> No hay libros disponibles de '" + listaLibros.get(i).getTitulo() + "'.");
-                }
-            }
-        }
-        if (encontrado == false) {
-            System.out.println(">>> El libro con ISBN '" + isbn + "' no ha sido encontrado.");
-        }
-    }
-
     public static void eliminarReserva(ArrayList<Libro> listaLibros) {
         int isbn = Lector.kInt("Introduce el ISBN del libro a devolver");
 
