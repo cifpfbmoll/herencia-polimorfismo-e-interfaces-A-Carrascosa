@@ -146,27 +146,28 @@ public class Reserva {
             System.out.println("<!> La información del usuario es incorrecta o no esta registrada en el sistema.");
         } else {
             Usuario user = (Usuario) biblio.getListaPersonas().get(i - 1);
-            System.out.println("    Se va a reservar un libro para " + user.getNombre() + " " + user.getApellido1() + " (" + user.getTelefono() + ")");
-            Integer isbn = Lector.kInt("Introduce el ISBN del libro a reservar");
+            System.out.println("    Se va a devolver un libro de " + user.getNombre() + " " + user.getApellido1() + " (" + user.getTelefono() + ")");
+            Integer isbn = Lector.kInt("Introduce el ISBN del libro a devolver");
 
             i = 0;
             encontrado = false;
 
-            while (i < biblio.getListaLibros().size() && !encontrado) {
-                if (biblio.getListaLibros().get(i).getIsbn() == isbn) {
+            while (i < user.getListaReservas().size() && !encontrado) {
+                if (user.getListaReservas().get(i).getLibro().getIsbn() == isbn) {
                     encontrado = true;
-                    Libro libro = biblio.getListaLibros().get(i);
-                    if (libro.getCopiasDisponibles() > 0) {
-                        Reserva reserva = new Reserva(libro, fecha, hora);
-                        user.getListaReservas().add(reserva);
-                        libro.setCopiasDisponibles(libro.getCopiasDisponibles() - 1);
-                        System.out.println("Se ha reservado el libro '" + libro.getTitulo() + "' para " + user.getNombre() + " " + user.getApellido1() + " (" + user.getTelefono() + ")");
-                        System.out.println(reserva.toString());
+                    Libro libro = user.getListaReservas().get(i).getLibro();
+                    if (libro.getCopiasDisponibles() < libro.getCopias()) {
+                        user.getListaReservas().remove(i);
+                        libro.setCopiasDisponibles(libro.getCopiasDisponibles() + 1);
+                        System.out.println("Se ha devuelto el libro '" + libro.getTitulo() + "' de " + user.getNombre() + " " + user.getApellido1() + " (" + user.getTelefono() + ")");
                     } else {
-                        System.out.println("<!> No hay copias disponibles del libro '" + libro.getTitulo() + "'");
+                        System.out.println("<!> No hay reservas del libro '" + libro.getTitulo() + "'");
                     }
                 }
                 i += 1;
+            }
+            if (!encontrado) {
+                System.out.println("<!> El libro no ha sido encontrado entre las reservas del usuario.");
             }
 
         }

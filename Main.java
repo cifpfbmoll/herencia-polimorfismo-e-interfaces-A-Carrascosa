@@ -127,7 +127,7 @@ public class Main {
                     break;
 
                 case 2: // Eliminar reserva
-                    Libro.eliminarReserva(biblio.getListaLibros());
+                    reserva.devolverLibro(biblio);
                     break;
 
                 case 3: // Mostrar los libros con reservas
